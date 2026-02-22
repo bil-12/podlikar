@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: podlikar-test
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: oom-victim
+  namespace: podlikar-test
+  labels:
+    app: oom-victim
+    scenario: oomkilled
+spec:
+  containers:
+    - name: memory-hog
+      image: polinux/stress
+      command: ["stress"]
+      args: ["--vm", "1", "--vm-bytes", "128M", "--vm-hang", "1"]
+      resources:
+        limits:
+          memory: "50Mi"
+        requests:
+          memory: "50Mi"

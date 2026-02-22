@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-entrypoint
+  namespace: podlikar-test
+  labels:
+    app: bad-entrypoint
+    scenario: crashloop-bad-command
+spec:
+  containers:
+    - name: broken
+      image: busybox:latest
+      command: ["/bin/nonexistent-command"]

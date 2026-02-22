@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-waiting-for-db
+  namespace: podlikar-test
+  labels:
+    app: app-waiting-for-db
+    scenario: dependency-ordering
+spec:
+  containers:
+    - name: app
+      image: busybox:latest
+      command:
+        - sh
+        - -c
+        - |
+          echo "Connecting to database..."
+          for i in $(seq 1 5); do
+            echo "Attempt $i: trying postgres-primary.cnpg-system:5432"
+            if nc -z postgres-primary.cnpg-system 5432 2>/dev/null; then
+              echo "Connected!"
+              sleep 3600
+              exit 0
+            fi
+            echo "Connection refused - database not ready"
+            sleep 2
+          done
+          echo "FATAL: could not connect to database after 5 attempts"
+          exit 1

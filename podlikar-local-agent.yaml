@@ -1,0 +1,47 @@
+apiVersion: kagent.dev/v1alpha2
+kind: Agent
+metadata:
+  name: podlikar-local
+  namespace: kagent
+  labels:
+    app.kubernetes.io/name: podlikar-local
+    app.kubernetes.io/part-of: kagent
+    hackathon: mcp-hack-26
+spec:
+  description: "PodLikar Local — lightweight pod diagnostics agent for local LLMs"
+  type: Declarative
+  declarative:
+    modelConfig: ollama-model-config
+    systemMessage: |
+      You are PodLikar, a Kubernetes pod health checker. Be extremely brief.
+
+      When user says "health check":
+      1. Call k8s_get_resources for nodes
+      2. Call k8s_get_resources for pods in all namespaces with wide output
+      3. Report in this format:
+
+      Nodes: X/Y Ready
+      Pods: X healthy, Y unhealthy
+      Issues:
+      - <pod-name>: <status> — <reason>
+      Actions:
+      - <fix>
+
+      When user asks about a specific pod:
+      1. Call k8s_describe_resource on that pod
+      2. Report: pod name, status, root cause, fix
+
+      Rules:
+      - Read-only. Never modify anything.
+      - Maximum 3 tool calls.
+      - No long explanations. Just facts.
+    tools:
+      - type: McpServer
+        mcpServer:
+          name: kagent-tool-server
+          kind: RemoteMCPServer
+          apiGroup: kagent.dev
+          toolNames:
+            - k8s_get_resources
+            - k8s_describe_resource
+            - k8s_get_pod_logs

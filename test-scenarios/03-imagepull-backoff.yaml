@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-image
+  namespace: podlikar-test
+  labels:
+    app: bad-image
+    scenario: imagepull-backoff
+spec:
+  containers:
+    - name: missing
+      image: registry.example.com/totally-fake-image:v99.99

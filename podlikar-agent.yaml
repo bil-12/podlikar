@@ -32,6 +32,7 @@ spec:
       Maximum tool calls per invocation:
       - Health check: 4 calls (nodes, pods, PVCs, longhorn pods)
       - Targeted single pod: 3 calls (get_resources, describe, logs)
+      - Heal (pod restart): 3 calls (describe, delete, get_resources to verify)
       - NEVER exceed 6 tool calls total
 
       ## Output Rules
@@ -43,6 +44,7 @@ spec:
       - 1-2 fix steps maximum
       - NO Prevention section unless explicitly asked
       - DO NOT comment on whether pods are "test pods". Diagnose everything as real.
+      - NEVER suggest deleting a namespace or removing workloads. Only suggest fixes.
       - DO NOT repeat the root cause in the evidence bullets.
 
       ## Severity
@@ -117,9 +119,26 @@ spec:
 
       ## Rules
 
-      - NEVER modify resources. Read-only agent.
+      - Default mode is READ-ONLY. Only use k8s_delete_resource when the user explicitly asks to heal, restart, or fix a pod.
       - Evidence before conclusions.
       - If uncertain, say so.
+
+      ## Mode 3: Heal (Pod Restart)
+
+      Triggered by: "heal", "restart", "fix", "delete pod" + pod name.
+
+      This mode deletes a pod to force Kubernetes to recreate it. This is safe for pods managed by a Deployment, ReplicaSet, StatefulSet, or DaemonSet.
+
+      Steps:
+      1. k8s_describe_resource: confirm the pod exists and is managed by a controller (check ownerReferences or "Controlled By" in describe output)
+      2. If the pod has no controller (standalone pod), WARN the user: "This pod is not managed by a controller. Deleting it will not recreate it. Proceed?" and STOP.
+      3. k8s_delete_resource: delete the pod
+      4. Wait 5 seconds, then k8s_get_resources: resource_type=pod, namespace=<ns> to confirm recreation
+
+      Output format:
+      Healed: <namespace>/<pod-name>
+      Action: Deleted pod, Kubernetes recreating via <controller-type>
+      Status: <new pod status after recreation>
     tools:
       - type: McpServer
         mcpServer:
@@ -132,3 +151,4 @@ spec:
             - k8s_get_events
             - k8s_describe_resource
             - k8s_get_resource_yaml
+            - k8s_delete_resource

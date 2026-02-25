@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
   <defs>
     <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
       <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.1"/>
@@ -12,111 +12,139 @@
     <marker id="arr-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-auto">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
     </marker>
+    <marker id="arr-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f97316"/>
+    </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="900" height="440" fill="#f8fafc" rx="8"/>
+  <rect width="920" height="480" fill="#f8fafc" rx="8"/>
 
   <!-- Title -->
-  <text x="450" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">PodLikar Diagnostic Flow</text>
+  <text x="460" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">PodLikar Diagnostic Flow</text>
 
   <!-- Input -->
-  <rect x="350" y="55" width="200" height="48" rx="24" fill="#0f172a" filter="url(#shadow)"/>
-  <text x="450" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">User Prompt</text>
+  <rect x="360" y="55" width="200" height="48" rx="24" fill="#0f172a" filter="url(#shadow)"/>
+  <text x="460" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">User Prompt</text>
 
-  <!-- Decision diamond - approximate with rotated square -->
-  <g transform="translate(450, 148)">
-    <rect x="-55" y="-30" width="110" height="60" rx="8" fill="#fff" stroke="#64748b" stroke-width="1.5" filter="url(#shadow)"/>
-    <text x="0" y="-5" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">Which mode?</text>
-    <text x="0" y="12" text-anchor="middle" font-size="9" fill="#64748b">keyword detection</text>
-  </g>
+  <!-- Decision -->
+  <rect x="405" y="118" width="110" height="50" rx="8" fill="#fff" stroke="#64748b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="460" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">Which mode?</text>
+  <text x="460" y="156" text-anchor="middle" font-size="9" fill="#64748b">keyword detection</text>
 
   <!-- Arrow from input to decision -->
-  <line x1="450" y1="103" x2="450" y2="115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="460" y1="103" x2="460" y2="115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- LEFT BRANCH: Health Check -->
-  <text x="225" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#22c55e">"health check"</text>
-  <line x1="395" y1="148" x2="310" y2="148" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arr-g)"/>
+  <!-- === LEFT: Health Check === -->
+  <text x="145" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#22c55e">"health check"</text>
+  <line x1="405" y1="143" x2="220" y2="143" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arr-g)"/>
 
-  <!-- Health Check Steps -->
-  <rect x="130" y="190" width="190" height="40" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="145" y="207" font-size="10" fill="#64748b">1.</text>
-  <text x="160" y="207" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
-  <text x="160" y="222" font-size="9" fill="#64748b">nodes</text>
+  <rect x="50" y="175" width="190" height="36" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="65" y="196" font-size="10" fill="#64748b">1.</text>
+  <text x="80" y="196" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
+  <text x="185" y="196" font-size="9" fill="#64748b">nodes</text>
 
-  <rect x="130" y="240" width="190" height="40" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="145" y="257" font-size="10" fill="#64748b">2.</text>
-  <text x="160" y="257" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
-  <text x="160" y="272" font-size="9" fill="#64748b">pods (all namespaces, wide)</text>
+  <rect x="50" y="219" width="190" height="36" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="65" y="240" font-size="10" fill="#64748b">2.</text>
+  <text x="80" y="240" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
+  <text x="185" y="240" font-size="9" fill="#64748b">pods</text>
 
-  <rect x="130" y="290" width="190" height="40" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="145" y="307" font-size="10" fill="#64748b">3.</text>
-  <text x="160" y="307" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
-  <text x="160" y="322" font-size="9" fill="#64748b">PVCs (all namespaces)</text>
+  <rect x="50" y="263" width="190" height="36" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="65" y="284" font-size="10" fill="#64748b">3.</text>
+  <text x="80" y="284" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
+  <text x="185" y="284" font-size="9" fill="#64748b">PVCs</text>
 
-  <rect x="130" y="340" width="190" height="40" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="145" y="357" font-size="10" fill="#64748b">4.</text>
-  <text x="160" y="357" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
-  <text x="160" y="372" font-size="9" fill="#64748b">longhorn-system pods</text>
-
-  <!-- Arrows between health check steps -->
-  <line x1="225" y1="170" x2="225" y2="186" stroke="#22c55e" stroke-width="1" marker-end="url(#arr-g)"/>
-  <line x1="225" y1="230" x2="225" y2="236" stroke="#22c55e" stroke-width="1"/>
-  <line x1="225" y1="280" x2="225" y2="286" stroke="#22c55e" stroke-width="1"/>
-  <line x1="225" y1="330" x2="225" y2="336" stroke="#22c55e" stroke-width="1"/>
+  <rect x="50" y="307" width="190" height="36" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="65" y="328" font-size="10" fill="#64748b">4.</text>
+  <text x="80" y="328" font-size="10" font-weight="600" fill="#15803d">get_resources</text>
+  <text x="185" y="328" font-size="9" fill="#64748b">longhorn</text>
 
   <!-- Health Check Output -->
-  <rect x="130" y="395" width="190" height="35" rx="6" fill="#22c55e" filter="url(#shadow)"/>
-  <text x="225" y="417" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Structured Report</text>
+  <rect x="50" y="360" width="190" height="35" rx="6" fill="#22c55e" filter="url(#shadow)"/>
+  <text x="145" y="382" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Structured Report</text>
 
-  <line x1="225" y1="380" x2="225" y2="391" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arr-g)"/>
+  <line x1="145" y1="168" x2="145" y2="172" stroke="#22c55e" stroke-width="1"/>
+  <line x1="145" y1="343" x2="145" y2="357" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arr-g)"/>
 
-  <!-- Token badge health check -->
-  <rect x="88" y="400" width="36" height="18" rx="9" fill="#dcfce7"/>
-  <text x="106" y="413" text-anchor="middle" font-size="8" font-weight="700" fill="#15803d">4</text>
-  <text x="106" y="430" text-anchor="middle" font-size="7" fill="#64748b">calls</text>
+  <!-- Badge -->
+  <rect x="8" y="365" width="36" height="18" rx="9" fill="#dcfce7"/>
+  <text x="26" y="378" text-anchor="middle" font-size="8" font-weight="700" fill="#15803d">4</text>
+  <text x="26" y="395" text-anchor="middle" font-size="7" fill="#64748b">calls</text>
 
-  <!-- RIGHT BRANCH: Targeted Diagnosis -->
-  <text x="675" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#3b82f6">"diagnose pod X"</text>
-  <line x1="505" y1="148" x2="590" y2="148" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-b)"/>
+  <!-- === MIDDLE: Targeted Diagnosis === -->
+  <text x="460" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#3b82f6">"diagnose pod X"</text>
+  <line x1="460" y1="168" x2="460" y2="193" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
-  <!-- Targeted Steps -->
-  <rect x="580" y="190" width="190" height="40" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="595" y="207" font-size="10" fill="#64748b">1.</text>
-  <text x="610" y="207" font-size="10" font-weight="600" fill="#1e40af">get_resources</text>
-  <text x="610" y="222" font-size="9" fill="#64748b">pods in namespace</text>
+  <rect x="365" y="205" width="190" height="36" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="380" y="226" font-size="10" fill="#64748b">1.</text>
+  <text x="395" y="226" font-size="10" font-weight="600" fill="#1e40af">get_resources</text>
+  <text x="510" y="226" font-size="9" fill="#64748b">pods</text>
 
-  <rect x="580" y="250" width="190" height="48" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="595" y="269" font-size="10" fill="#64748b">2.</text>
-  <text x="610" y="269" font-size="10" font-weight="600" fill="#1e40af">describe_resource</text>
-  <text x="610" y="284" font-size="9" fill="#64748b">target pod (includes events!)</text>
+  <rect x="365" y="249" width="190" height="42" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="380" y="268" font-size="10" fill="#64748b">2.</text>
+  <text x="395" y="268" font-size="10" font-weight="600" fill="#1e40af">describe_resource</text>
+  <text x="395" y="282" font-size="9" fill="#64748b">includes events!</text>
 
-  <rect x="580" y="318" width="190" height="40" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
-  <text x="595" y="335" font-size="10" fill="#64748b">3.</text>
-  <text x="610" y="335" font-size="10" font-weight="600" fill="#1e40af">get_pod_logs</text>
-  <text x="610" y="350" font-size="9" fill="#64748b">tail_lines=20</text>
+  <rect x="365" y="299" width="190" height="36" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="380" y="320" font-size="10" fill="#64748b">3.</text>
+  <text x="395" y="320" font-size="10" font-weight="600" fill="#1e40af">get_pod_logs</text>
+  <text x="500" y="320" font-size="9" fill="#64748b">tail=20</text>
 
-  <!-- Arrows between targeted steps -->
-  <line x1="675" y1="170" x2="675" y2="186" stroke="#3b82f6" stroke-width="1" marker-end="url(#arr-b)"/>
-  <line x1="675" y1="230" x2="675" y2="246" stroke="#3b82f6" stroke-width="1"/>
-  <line x1="675" y1="298" x2="675" y2="314" stroke="#3b82f6" stroke-width="1"/>
+  <!-- Diagnosis Output -->
+  <rect x="365" y="352" width="190" height="42" rx="6" fill="#3b82f6" filter="url(#shadow)"/>
+  <text x="460" y="372" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Root Cause + Fix</text>
+  <text x="460" y="386" text-anchor="middle" font-size="9" fill="#dbeafe">Pod / Status / Evidence</text>
 
-  <!-- Targeted Output -->
-  <rect x="580" y="378" width="190" height="48" rx="6" fill="#3b82f6" filter="url(#shadow)"/>
-  <text x="675" y="398" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Root Cause + Fix</text>
-  <text x="675" y="414" text-anchor="middle" font-size="9" fill="#dbeafe">Pod / Status / Evidence</text>
+  <line x1="460" y1="335" x2="460" y2="349" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-b)"/>
 
-  <line x1="675" y1="358" x2="675" y2="374" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-b)"/>
+  <!-- Badge -->
+  <rect x="323" y="357" width="36" height="18" rx="9" fill="#dbeafe"/>
+  <text x="341" y="370" text-anchor="middle" font-size="8" font-weight="700" fill="#1e40af">3</text>
+  <text x="341" y="387" text-anchor="middle" font-size="7" fill="#64748b">calls</text>
 
-  <!-- Token badge targeted -->
-  <rect x="538" y="383" width="36" height="18" rx="9" fill="#dbeafe"/>
-  <text x="556" y="396" text-anchor="middle" font-size="8" font-weight="700" fill="#1e40af">3</text>
-  <text x="556" y="413" text-anchor="middle" font-size="7" fill="#64748b">calls</text>
+  <!-- === RIGHT: Heal === -->
+  <text x="775" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#f97316">"heal / restart pod"</text>
+  <line x1="515" y1="143" x2="700" y2="143" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-o)"/>
 
-  <!-- Center divider -->
-  <line x1="450" y1="185" x2="450" y2="430" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="6 4"/>
+  <rect x="680" y="175" width="190" height="42" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="695" y="194" font-size="10" fill="#64748b">1.</text>
+  <text x="710" y="194" font-size="10" font-weight="600" fill="#c2410c">describe_resource</text>
+  <text x="710" y="208" font-size="9" fill="#64748b">check controller exists</text>
 
-  <!-- Total tokens annotation -->
-  <rect x="400" y="192" width="100" height="22" rx="11" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-  <text x="450" y="207" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">~12K tokens</text>
+  <!-- Safety check -->
+  <rect x="705" y="230" width="140" height="30" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="775" y="249" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">⚠ No controller? STOP</text>
+
+  <rect x="680" y="273" width="190" height="36" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="695" y="294" font-size="10" fill="#64748b">2.</text>
+  <text x="710" y="294" font-size="10" font-weight="600" fill="#c2410c">delete_resource</text>
+  <text x="818" y="294" font-size="9" fill="#64748b">pod</text>
+
+  <rect x="680" y="317" width="190" height="42" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="695" y="336" font-size="10" fill="#64748b">3.</text>
+  <text x="710" y="336" font-size="10" font-weight="600" fill="#c2410c">get_resources</text>
+  <text x="710" y="350" font-size="9" fill="#64748b">verify recreation</text>
+
+  <!-- Heal Output -->
+  <rect x="680" y="376" width="190" height="35" rx="6" fill="#f97316" filter="url(#shadow)"/>
+  <text x="775" y="398" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Healed + Verified</text>
+
+  <line x1="775" y1="168" x2="775" y2="172" stroke="#f97316" stroke-width="1"/>
+  <line x1="775" y1="359" x2="775" y2="373" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-o)"/>
+
+  <!-- Badge -->
+  <rect x="638" y="381" width="36" height="18" rx="9" fill="#ffedd5"/>
+  <text x="656" y="394" text-anchor="middle" font-size="8" font-weight="700" fill="#c2410c">3</text>
+  <text x="656" y="411" text-anchor="middle" font-size="7" fill="#64748b">calls</text>
+
+  <!-- Dividers -->
+  <line x1="305" y1="175" x2="305" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="6 4"/>
+  <line x1="625" y1="175" x2="625" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- Total tokens -->
+  <rect x="370" y="430" width="180" height="28" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="460" y="449" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">~12K tokens per invocation</text>
+
+  <!-- Footer -->
+  <text x="460" y="472" text-anchor="middle" font-size="9" fill="#94a3b8">Read-only by default  |  Heal requires explicit user request  |  Standalone pods protected</text>
 </svg>

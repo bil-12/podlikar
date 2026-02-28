@@ -103,8 +103,6 @@ Clean up when done:
 kubectl delete namespace podlikar-test
 ```
 
-Scenarios `07-healable-dependency.yaml` and `08-database-fix.yaml` are for testing the heal mode — deploy the app first, then the database, then ask PodLikar to restart the app pod.
-
 ## Using a local LLM (Ollama)
 
 PodLikar supports local models via Ollama. Apply the config:

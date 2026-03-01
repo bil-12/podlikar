@@ -169,4 +169,4 @@ Full writeup covering the prompt engineering journey, token optimisation, and lo
 
 ## Built for
 
-[MCP_HACK//26](https://aihackathon.dev/) — Starter Track
+[MCP_HACK//26](https://aihackathon.dev/)

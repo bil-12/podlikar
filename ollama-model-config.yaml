@@ -21,4 +21,4 @@ spec:
   model: llama3.2:latest
   provider: Ollama
   ollama:
-    host: http://192.168.8.164:11434
+    host: http://<host IP>:11434
